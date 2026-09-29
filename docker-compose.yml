@@ -1,0 +1,36 @@
+services:
+  # ─── Express Backend ───
+  backend:
+    build: ./backend
+    container_name: worknoon-backend
+    ports:
+      - '5000:5000'
+    env_file:
+      - .env
+    environment:
+      - PORT=5000
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    networks:
+      - worknoon-network
+
+  # ─── React Frontend ───
+  frontend:
+    build: ./frontend
+    container_name: worknoon-frontend
+    ports:
+      - '3000:3000'
+    environment:
+      - VITE_API_URL=http://localhost:5000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - worknoon-network
+
+networks:
+  worknoon-network:
+    driver: bridge

@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Environment variables (CRITICAL: never commit keys)
+.env
+backend/.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker
+mongo-data/
+
+# Build output
+frontend/dist/
+
+# Logs
+*.log
